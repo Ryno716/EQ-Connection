@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global styles */
+body {
+  @apply bg-white text-gray-900; /* Default light mode */
+}
+
+.dark body {
+  @apply bg-gray-900 text-white; /* Dark mode */
+}
+
+.dark a {
+  @apply text-blue-400; /* Links change color */
+}
+
+.dark nav {
+  @apply bg-gray-800 text-white; /* Navbar color */
+}
+
+.dark footer {
+  @apply bg-gray-800 text-white; /* Footer color */
+}
