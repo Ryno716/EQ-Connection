@@ -9,9 +9,10 @@ const AddHorseForm = ({ onAddHorse }) => {
     age: "",
     height: "",
     discipline: "",
-    price: "",
+    price: 0,
     image: "",
   });
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -19,7 +20,11 @@ const AddHorseForm = ({ onAddHorse }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formData.name || !formData.breed || !formData.price) return;
+    if (!formData.name || !formData.breed || !formData.price) {
+      setError("Please fill in required fields: Name, Breed, and Price.");
+      return;
+    }
+    setError("");
     onAddHorse(formData);
     setFormData({
       name: "",
@@ -27,7 +32,7 @@ const AddHorseForm = ({ onAddHorse }) => {
       age: "",
       height: "",
       discipline: "",
-      price: "",
+      price: 0,
       image: "",
     });
   };
@@ -44,22 +49,24 @@ const AddHorseForm = ({ onAddHorse }) => {
         Add a Horse
       </h2>
 
+      {/* Error Message */}
+      {error && <p className="text-red-500 text-center mb-4">{error}</p>}
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {[
           { name: "name", placeholder: "Horse Name" },
           { name: "breed", placeholder: "Breed" },
-          { name: "age", placeholder: "Age" },
+          { name: "age", placeholder: "Age", type: "number" },
           { name: "height", placeholder: "Height (hh)" },
           {
             name: "discipline",
             placeholder: "Discipline (e.g., Dressage, Jumping)",
           },
-          { name: "price", placeholder: "Price" },
-          { name: "image", placeholder: "Image URL" },
+          { name: "price", placeholder: "Price", type: "number" },
         ].map((field) => (
           <input
             key={field.name}
-            type="text"
+            type={field.type || "text"}
             name={field.name}
             placeholder={field.placeholder}
             value={formData[field.name]}
@@ -67,6 +74,27 @@ const AddHorseForm = ({ onAddHorse }) => {
             className="p-3 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-900 dark:text-white"
           />
         ))}
+      </div>
+
+      {/* Image Upload */}
+      <div className="mt-4">
+        <label className="block text-gray-700 dark:text-gray-300 mb-2">
+          Upload Image
+        </label>
+        <input
+          type="file"
+          name="image"
+          accept="image/*"
+          onChange={(e) => {
+            if (e.target.files.length > 0) {
+              setFormData({
+                ...formData,
+                image: URL.createObjectURL(e.target.files[0]),
+              });
+            }
+          }}
+          className="p-3 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-900 dark:text-white"
+        />
       </div>
 
       <button

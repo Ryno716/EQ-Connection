@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -7,7 +8,9 @@ const Footer = () => {
         {/* Left Section */}
         <div className="text-center md:text-left mb-4 md:mb-0">
           <h2 className="text-lg font-bold">Equine Marketplace</h2>
-          <p className="text-sm text-gray-400">© 2025 All rights reserved.</p>
+          <p className="text-sm text-gray-400">
+            © {new Date().getFullYear()} All rights reserved.
+          </p>
         </div>
 
         {/* Navigation Links */}
@@ -26,13 +29,13 @@ const Footer = () => {
         {/* Social Links */}
         <div className="flex space-x-4">
           <a href="#" className="hover:text-blue-400 transition">
-            <i className="fab fa-facebook"></i>
+            <FaFacebook />
           </a>
           <a href="#" className="hover:text-blue-400 transition">
-            <i className="fab fa-twitter"></i>
+            <FaTwitter />
           </a>
           <a href="#" className="hover:text-blue-400 transition">
-            <i className="fab fa-instagram"></i>
+            <FaInstagram />
           </a>
         </div>
       </div>

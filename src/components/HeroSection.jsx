@@ -1,38 +1,45 @@
-import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import Button from "./ui/Button"; // ✅ Import Button component
+import { Link } from "react-router-dom";
 
 const HeroSection = () => {
   return (
-    <motion.section
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className="h-[600px] flex flex-col items-center justify-center text-center 
-                 bg-gradient-to-r from-blue-100 to-blue-300 shadow-lg rounded-lg 
-                 dark:from-gray-800 dark:to-gray-900 p-10 relative overflow-hidden"
+    <motion.div
+      className="relative w-full h-screen flex items-center justify-center bg-cover bg-center"
+      style={{ backgroundImage: "url('/images/hero-bg.jpg')" }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
     >
-      {/* Background Animation */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_#ffffff44,_transparent)] dark:bg-[radial-gradient(circle_at_center,_#11111144,_transparent)]" />
+      <div className="text-center text-white">
+        <h1 className="text-4xl md:text-6xl font-bold">
+          Find Your Perfect Equine Partner
+        </h1>
+        <p className="text-lg mt-4 max-w-xl mx-auto">
+          Browse top-quality horses, tack, and equine services.
+        </p>
 
-      <h1 className="text-6xl font-extrabold text-gray-900 dark:text-white drop-shadow-lg">
-        Buy & Sell Horses, Equipment, & Services
-      </h1>
-      <p className="text-lg text-gray-700 dark:text-gray-300 mt-4 max-w-2xl">
-        The ultimate marketplace for horse enthusiasts. Find, sell, and connect
-        with professionals.
-      </p>
-
-      <div className="mt-6">
-        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-          <Link to="../pages/Listings.jsx">
-            <Button className="px-8 py-3 text-lg font-semibold">
-              Browse Listings
-            </Button>
+        {/* CTA Buttons with Motion */}
+        <motion.div
+          className="mt-6 flex justify-center space-x-4"
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8 }}
+        >
+          <Link
+            to="/listings"
+            className="px-6 py-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition"
+          >
+            Browse Listings
+          </Link>
+          <Link
+            to="/add-horse"
+            className="px-6 py-3 border border-white text-white font-semibold rounded-lg hover:bg-white hover:text-blue-500 transition"
+          >
+            Sell a Horse
           </Link>
         </motion.div>
       </div>
-    </motion.section>
+    </motion.div>
   );
 };
 

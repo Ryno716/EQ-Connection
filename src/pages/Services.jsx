@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { FaStethoscope, FaHorseHead, FaHammer } from "react-icons/fa";
 
 const Services = () => {
   return (
@@ -8,7 +9,7 @@ const Services = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
-      <h1 className="text-5xl font-extrabold mb-6 text-gray-900 dark:text-white">
+      <h1 className="text-3xl md:text-5xl font-extrabold mb-6 text-gray-900 dark:text-white">
         Equine Services
       </h1>
       <p className="text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
@@ -17,10 +18,12 @@ const Services = () => {
 
       {/* Services List */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-10">
+        {/* Veterinary Care */}
         <motion.div
-          className="p-6 bg-white dark:bg-gray-800 shadow-lg rounded-lg"
+          className="p-6 bg-white dark:bg-gray-800 shadow-lg rounded-lg flex flex-col items-center"
           whileHover={{ scale: 1.05 }}
         >
+          <FaStethoscope className="text-blue-500 text-4xl mb-4" />
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
             Veterinary Care
           </h2>
@@ -29,10 +32,12 @@ const Services = () => {
           </p>
         </motion.div>
 
+        {/* Farrier Services */}
         <motion.div
-          className="p-6 bg-white dark:bg-gray-800 shadow-lg rounded-lg"
+          className="p-6 bg-white dark:bg-gray-800 shadow-lg rounded-lg flex flex-col items-center"
           whileHover={{ scale: 1.05 }}
         >
+          <FaHammer className="text-blue-500 text-4xl mb-4" />
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
             Farrier Services
           </h2>
@@ -41,10 +46,12 @@ const Services = () => {
           </p>
         </motion.div>
 
+        {/* Training & Coaching */}
         <motion.div
-          className="p-6 bg-white dark:bg-gray-800 shadow-lg rounded-lg"
+          className="p-6 bg-white dark:bg-gray-800 shadow-lg rounded-lg flex flex-col items-center"
           whileHover={{ scale: 1.05 }}
         >
+          <FaHorseHead className="text-blue-500 text-4xl mb-4" />
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
             Training & Coaching
           </h2>

@@ -12,7 +12,9 @@ const Card = ({ id, name, breed, age, height, discipline, price, image }) => {
         src={image}
         alt={name}
         className="w-full h-48 object-cover"
-        onError={(e) => (e.target.src = "/images/default-horse.jpg")}
+        onError={(e) =>
+          (e.target.src = "/client/public/images/default-horse.jpg")
+        }
       />
       <div className="p-4">
         <h3 className="text-lg font-semibold">{name}</h3>
@@ -33,13 +35,13 @@ const Card = ({ id, name, breed, age, height, discipline, price, image }) => {
 };
 
 Card.propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   name: PropTypes.string.isRequired,
   breed: PropTypes.string.isRequired,
-  age: PropTypes.string.isRequired,
-  height: PropTypes.string.isRequired,
+  age: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   discipline: PropTypes.string.isRequired,
-  price: PropTypes.string.isRequired,
+  price: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   image: PropTypes.string.isRequired,
 };
 
