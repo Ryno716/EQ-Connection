@@ -1,35 +1,67 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import PropTypes from "prop-types";
+import { useState } from "react";
 
-const Card = ({ id, name, breed, age, height, discipline, price, image }) => {
+const Card = ({
+  id,
+  name,
+  breed,
+  age,
+  height,
+  discipline,
+  price,
+  images = [],
+  status,
+}) => {
+  const [currentImage, setCurrentImage] = useState(
+    images[0] || "/images/placeholder.jpg"
+  );
+
   return (
     <motion.div
-      className="border rounded-lg shadow-md overflow-hidden bg-white hover:shadow-xl transition-shadow duration-200 transform hover:-translate-y-1"
+      className="border rounded-lg shadow-md overflow-hidden bg-white dark:bg-gray-800 hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1 cursor-pointer"
       whileHover={{ scale: 1.05 }}
     >
-      <img
-        src={image}
-        alt={name}
-        className="w-full h-48 object-cover"
-        onError={(e) =>
-          (e.target.src = "/client/public/images/default-horse.jpg")
-        }
-      />
-      <div className="p-4">
-        <h3 className="text-lg font-semibold">{name}</h3>
-        <p className="text-gray-500">
-          {breed} | {age} | {height}
-        </p>
-        <p className="text-gray-700 font-semibold">{discipline}</p>
-        <p className="text-blue-600 font-bold">{price}</p>
-        <Link
-          to={`/listing/${id}`}
-          className="block mt-2 text-blue-500 hover:underline"
+      <Link to={`/listing/${id}`} className="block">
+        <div
+          className="relative"
+          onMouseEnter={() => images[1] && setCurrentImage(images[1])}
+          onMouseLeave={() => setCurrentImage(images[0])}
         >
-          View Details
-        </Link>
-      </div>
+          <img
+            src={currentImage}
+            alt={name}
+            className="w-full h-56 object-cover"
+            onError={(e) => (e.target.src = "/images/placeholder.jpg")}
+          />
+          <div className="absolute top-2 left-2 bg-blue-500 text-white text-xs font-semibold px-2 py-1 rounded capitalize">
+            {discipline}
+          </div>
+
+          {status && (
+            <div className="absolute top-2 right-2 bg-green-500 text-white text-xs font-semibold px-2 py-1 rounded">
+              {status}
+            </div>
+          )}
+        </div>
+
+        <div className="p-4">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+            {name}
+          </h3>
+          <p className="text-gray-500 dark:text-gray-400">
+            {breed} | {age} | {height}
+          </p>
+          <p className="text-blue-600 font-bold text-xl mt-2">${price}</p>
+          <motion.div
+            whileHover={{ scale: 1.1 }}
+            className="mt-3 text-center py-2 bg-blue-500 text-white rounded-lg font-semibold hover:bg-blue-600 transition"
+          >
+            View Details
+          </motion.div>
+        </div>
+      </Link>
     </motion.div>
   );
 };
@@ -42,7 +74,8 @@ Card.propTypes = {
   height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   discipline: PropTypes.string.isRequired,
   price: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  image: PropTypes.string.isRequired,
+  images: PropTypes.arrayOf(PropTypes.string),
+  status: PropTypes.string,
 };
 
 export default Card;

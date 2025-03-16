@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-white py-6 mt-12 shadow-lg">
+    <footer className="bg-gray-900 text-white py-8 mt-12 shadow-lg">
       <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
         {/* Left Section */}
         <div className="text-center md:text-left mb-4 md:mb-0">
@@ -28,15 +29,27 @@ const Footer = () => {
 
         {/* Social Links */}
         <div className="flex space-x-4">
-          <a href="#" className="hover:text-blue-400 transition">
+          <motion.a
+            href="#"
+            className="hover:text-blue-400 transition"
+            whileHover={{ scale: 1.2 }}
+          >
             <FaFacebook />
-          </a>
-          <a href="#" className="hover:text-blue-400 transition">
+          </motion.a>
+          <motion.a
+            href="#"
+            className="hover:text-blue-400 transition"
+            whileHover={{ scale: 1.2 }}
+          >
             <FaTwitter />
-          </a>
-          <a href="#" className="hover:text-blue-400 transition">
+          </motion.a>
+          <motion.a
+            href="#"
+            className="hover:text-blue-400 transition"
+            whileHover={{ scale: 1.2 }}
+          >
             <FaInstagram />
-          </a>
+          </motion.a>
         </div>
       </div>
     </footer>

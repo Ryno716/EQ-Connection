@@ -10,30 +10,35 @@ const HeroSection = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
-      <div className="text-center text-white">
-        <h1 className="text-4xl md:text-6xl font-bold">
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+
+      {/* Content */}
+      <div className="relative text-center text-white px-6">
+        <h1 className="text-4xl md:text-6xl font-extrabold leading-tight tracking-wide">
           Find Your Perfect Equine Partner
         </h1>
-        <p className="text-lg mt-4 max-w-xl mx-auto">
-          Browse top-quality horses, tack, and equine services.
+        <p className="text-lg mt-4 max-w-xl mx-auto opacity-90">
+          Browse top-quality horses, tack, and equine services tailored to your
+          needs.
         </p>
 
         {/* CTA Buttons with Motion */}
         <motion.div
-          className="mt-6 flex justify-center space-x-4"
+          className="mt-6 flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-4"
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
         >
           <Link
             to="/listings"
-            className="px-6 py-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition"
+            className="px-8 py-3 bg-gradient-to-r from-blue-500 to-blue-700 text-white font-semibold rounded-lg shadow-md hover:shadow-lg hover:scale-105 transition"
           >
             Browse Listings
           </Link>
           <Link
             to="/add-horse"
-            className="px-6 py-3 border border-white text-white font-semibold rounded-lg hover:bg-white hover:text-blue-500 transition"
+            className="px-8 py-3 border border-white text-white font-semibold rounded-lg shadow-md hover:bg-white hover:text-blue-500 hover:scale-105 transition"
           >
             Sell a Horse
           </Link>

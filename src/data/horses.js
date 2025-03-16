@@ -7,7 +7,8 @@ export const sampleHorses = [
     height: "16.2hh",
     discipline: "Show Jumping",
     price: "$25,000",
-    image: "/images/horse1.jpg",
+    images: ["/images/horse1.jpg", "/images/horse1-2.jpg"],
+    status: "New",
   },
   {
     id: 2,
@@ -17,7 +18,8 @@ export const sampleHorses = [
     height: "15.3hh",
     discipline: "Dressage",
     price: "$30,000",
-    image: "/images/horse2.jpg",
+    images: ["/images/horse2.jpg", "/images/horse2-2.jpg"],
+    status: "New",
   },
   {
     id: 3,
@@ -27,7 +29,8 @@ export const sampleHorses = [
     height: "15.1hh",
     discipline: "Western Pleasure",
     price: "$20,000",
-    image: "/images/horse3.jpg",
+    images: ["/images/horse3.jpg", "/images/horse3-2.jpg"],
+    status: "New",
   },
   {
     id: 4,
@@ -37,7 +40,8 @@ export const sampleHorses = [
     height: "14.3hh",
     discipline: "Endurance",
     price: "$15,000",
-    image: "/images/horse4.jpg",
+    images: ["/images/horse4.jpg", "/images/horse4-2.jpg"],
+    status: "New",
   },
   {
     id: 5,
@@ -47,6 +51,7 @@ export const sampleHorses = [
     height: "17.0hh",
     discipline: "Eventing",
     price: "$35,000",
-    image: "/images/horse5.jpg",
+    images: ["/images/horse5.jpg", "/images/horse5-2.jpg"],
+    status: "New",
   },
 ];

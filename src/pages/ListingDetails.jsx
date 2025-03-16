@@ -1,73 +1,30 @@
-import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 
-const ListingDetails = () => {
+const ListingDetails = ({ listings }) => {
   const { id } = useParams();
   const [listing, setListing] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  // Temporary mock data
-  const mockListings = [
-    {
-      id: "1",
-      name: "Champion Show Jumper",
-      description: "A well-trained horse with excellent jumping abilities.",
-      price: 15000,
-      image: "/images/horse1.jpg",
-    },
-    {
-      id: "2",
-      name: "Dressage Star",
-      description:
-        "Perfect for dressage enthusiasts, well-behaved and talented.",
-      price: 12000,
-      image: "/images/horse2.jpg",
-    },
-    {
-      id: "3",
-      name: "Western Trail Horse",
-      description: "Great for leisurely rides and trail riding.",
-      price: 8000,
-      image: "/images/horse3.jpg",
-    },
-    {
-      id: "4",
-      name: "Horse Grooming Kit",
-      description: "A complete set of grooming tools and supplies.",
-      price: 75,
-      image: "/images/horse4.jpg",
-    },
-  ];
 
   useEffect(() => {
-    setLoading(true);
+    const foundListing = listings.find((l) => String(l.id) === id);
+    setListing(foundListing);
+  }, [id, listings]);
 
-    // Simulate an API call delay
-    setTimeout(() => {
-      const foundListing = mockListings.find((l) => l.id === id);
-      if (!foundListing) {
-        setError("Listing not found.");
-      } else {
-        setListing(foundListing);
-      }
-      setLoading(false);
-    }, 1000); // Simulates 1 second delay
-  }, [id]);
-
-  if (loading) {
-    return <p className="text-center text-gray-500">Loading...</p>;
-  }
-
-  if (error) {
-    return <p className="text-center text-red-500">Error: {error}</p>;
+  if (!listing) {
+    return <p className="text-center text-red-500 mt-10">Listing not found.</p>;
   }
 
   return (
     <div className="container mx-auto px-6 py-10">
-      <div className="max-w-3xl mx-auto bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+      <motion.div
+        className="max-w-3xl mx-auto bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
         <img
-          src={listing.image || "/images/placeholder.jpg"}
+          src={listing.images[0] || "/images/placeholder.jpg"}
           alt={listing.name}
           className="w-full h-64 object-cover rounded-lg"
         />
@@ -75,17 +32,17 @@ const ListingDetails = () => {
           {listing.name}
         </h1>
         <p className="text-gray-600 dark:text-gray-300 mt-2">
-          {listing.description || "No description available."}
+          {listing.breed} | {listing.age} | {listing.height} |{" "}
+          {listing.discipline}
         </p>
-        <div className="mt-4 flex justify-between items-center">
-          <span className="text-2xl font-bold text-blue-500">
-            ${listing.price || "N/A"}
-          </span>
-          <button className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition">
-            Contact Seller
-          </button>
-        </div>
-      </div>
+        <p className="text-blue-600 font-bold text-2xl mt-4">{listing.price}</p>
+        <motion.button
+          className="mt-4 px-6 py-3 bg-green-500 text-white rounded-lg font-semibold transition"
+          whileHover={{ scale: 1.05 }}
+        >
+          Contact Seller
+        </motion.button>
+      </motion.div>
     </div>
   );
 };
